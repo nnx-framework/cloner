@@ -20,6 +20,7 @@
 
     "zendframework/zend-modulemanager": "~2.4.0",
     "zendframework/zend-eventmanager": "~2.4.0",
+    "zendframework/zend-servicemanager": "~2.4.0",
     "zendframework/zend-stdlib": "~2.4.0"
 
   },
@@ -31,7 +32,7 @@
 
     "nnx/zf2-test-toolkit": "~0.1.4",
 
-    "zendframework/zend-servicemanager": "~2.4.0",
+
     "zendframework/zend-mvc": "~2.4.0",
     "zendframework/zend-config": "~2.4.0",
     "zendframework/zend-test": "~2.4.0",

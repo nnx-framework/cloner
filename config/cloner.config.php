@@ -6,9 +6,9 @@
 namespace Nnx\Cloner;
 
 return [
-    'service_manager' => [
+    ClonerPluginManager::CONFIG_KEY => [
         'invokables'         => [
-            ClonerManagerInterface::class => ClonerPluginManager::class
+
         ],
         'factories'          => [
 
