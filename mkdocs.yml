@@ -1,0 +1,7 @@
+docs_dir: doc/book/ru
+pages:
+    - index.md
+site_name: nnx-cloner
+site_description: 'Модуль для унификации работы с клонированием'
+repo_url: 'https://github.com/nnx-framework/cloner'
+copyright: 'Copyright (c) 2016 <a href="https://github.com/nnx-framework">NNX</a>'
