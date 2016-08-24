@@ -1,5 +1,6 @@
 {
   "name": "nnx/cloner",
+  "homepage": "https://github.com/nnx-framework/cloner",
   "description": "NNX cloner module",
   "type": "library",
   "keywords": [
@@ -12,6 +13,10 @@
     {
       "name": "Malofeykin Andrey",
       "email": "and-rey2@yandex.ru"
+    },
+    {
+      "name": "Lobanov Aleksandr",
+      "email": "alex912004@gamil.ru"
     }
   ],
   "require": {
@@ -39,7 +44,9 @@
     "zendframework/zend-loader": "~2.4.0",
     "zendframework/zend-serializer": "~2.4.0",
     "zendframework/zend-log": "~2.4.0",
-    "zendframework/zend-i18n": "~2.4.0"
+    "zendframework/zend-i18n": "~2.4.0",
+    "doctrine/common": "~2.6.0",
+    "doctrine/collections": "~1.3.0"
   },
   "autoload": {
     "psr-4": {

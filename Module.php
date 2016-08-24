@@ -5,7 +5,6 @@
  */
 namespace Nnx\Cloner;
 
-
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -115,5 +114,4 @@ class Module implements
             include __DIR__ . '/config/cloner.config.php'
         );
     }
-
-} 
+}

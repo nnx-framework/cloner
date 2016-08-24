@@ -12,4 +12,10 @@ namespace Nnx\Cloner;
  */
 interface ClonerInterface
 {
+    /**
+     * Клонирование и обработка объекта и связей
+     *
+     * @return mixed
+     */
+    public function cloneObject($object);
 }

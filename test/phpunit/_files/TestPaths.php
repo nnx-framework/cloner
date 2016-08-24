@@ -29,6 +29,4 @@ class TestPaths
     {
         return  __DIR__ . '/../_files/DefaultApp/config/application.config.php';
     }
-
-
 }
