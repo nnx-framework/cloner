@@ -18,7 +18,7 @@ return [
             Module::MODULE_NAME => TestPaths::getPathToModule(),
         ],
         'config_glob_paths' => [
-            __DIR__ . '/config/autoload/{{,*.}global,{,*.}local}.php',
+            __DIR__ . '/autoload/{{,*.}global,{,*.}local}.php',
         ],
     ]
 ];

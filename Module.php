@@ -5,6 +5,7 @@
  */
 namespace Nnx\Cloner;
 
+use Nnx\ModuleOptions\ModuleConfigKeyProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\DependencyIndicatorInterface;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -21,6 +22,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  * @package Nnx\ModuleOptions
  */
 class Module implements
+    ModuleConfigKeyProviderInterface,
     AutoloaderProviderInterface,
     ConfigProviderInterface,
     DependencyIndicatorInterface,
@@ -75,6 +77,13 @@ class Module implements
         );
     }
 
+    /**
+     * @return string
+     */
+    public function getModuleConfigKey()
+    {
+        return self::CONFIG_KEY;
+    }
 
     /**
      * @return array

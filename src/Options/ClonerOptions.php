@@ -16,10 +16,35 @@ use Zend\Stdlib\AbstractOptions;
  */
 class ClonerOptions extends AbstractOptions
 {
+
+    /**
+     * @var string создаваемый класс клонера
+     */
+    protected $class;
+
     /**
      * @var Cloner\RelationOptions[]
      */
     protected $relations = [];
+
+    /**
+     * @return string
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return $this
+     */
+    public function setClass($class)
+    {
+        $this->class = $class;
+        return $this;
+    }
 
     /**
      * @return Cloner\RelationOptions[]

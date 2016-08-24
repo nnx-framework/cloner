@@ -29,10 +29,10 @@ class Cloner implements ClonerInterface
     /**
      * Cloner constructor.
      *
-     * @param ClonerInterface       $clonerManager
+     * @param ClonerManagerInterface       $clonerManager
      * @param Options\ClonerOptions $options
      */
-    public function __construct(ClonerInterface $clonerManager, Options\ClonerOptions $options)
+    public function __construct(ClonerManagerInterface $clonerManager, Options\ClonerOptions $options)
     {
         $this->clonerManager = $clonerManager;
         $this->options = $options;

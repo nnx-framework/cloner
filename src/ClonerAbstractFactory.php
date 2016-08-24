@@ -16,6 +16,11 @@ use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 
+/**
+ * Class ClonerAbstractFactory
+ *
+ * @package Nnx\Cloner
+ */
 class ClonerAbstractFactory implements AbstractFactoryInterface
 {
 
@@ -43,7 +48,8 @@ class ClonerAbstractFactory implements AbstractFactoryInterface
         }
         if (array_key_exists($requestedName, $this->clonersConfig)) {
             if (array_key_exists('class', $this->clonersConfig[$requestedName])) {
-                return is_a($this->clonersConfig[$requestedName]['class'], Cloner::class);
+                $class = Cloner::class;
+                return is_a($this->clonersConfig[$requestedName]['class'], $class, true);
             } else {
                 return true;
             }
@@ -66,8 +72,8 @@ class ClonerAbstractFactory implements AbstractFactoryInterface
 
         Assertion::isInstanceOf($serviceLocator, ClonerManagerInterface::class);
         Assertion::isInstanceOf($options, Options\ClonerOptions::class);
-
-        new $requestedName(
+        $class = $options->getClass();
+        return new $class(
             $serviceLocator,
             $options
         );
