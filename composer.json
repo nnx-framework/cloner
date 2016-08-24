@@ -22,7 +22,7 @@
   "require": {
     "php": ">=5.5.0",
     "nnx/module-options": "~0.1.0",
-
+    "beberlei/assert": "^2.4",
     "zendframework/zend-modulemanager": "~2.4.0",
     "zendframework/zend-eventmanager": "~2.4.0",
     "zendframework/zend-servicemanager": "~2.4.0",
