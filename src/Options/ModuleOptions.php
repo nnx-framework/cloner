@@ -38,5 +38,4 @@ class ModuleOptions extends AbstractOptions implements ModuleOptionsInterface
         $this->cloners = $cloners;
         return $this;
     }
-
 }

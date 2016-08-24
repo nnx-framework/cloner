@@ -41,5 +41,4 @@ class Cloner extends AbstractHttpControllerTestCase
         $cloner = $manager->get('TestCloner');
         static::assertInstanceOf(\Nnx\Cloner\Cloner::class, $cloner);
     }
-
 }

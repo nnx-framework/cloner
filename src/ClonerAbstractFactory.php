@@ -8,7 +8,6 @@
 namespace Nnx\Cloner;
 
 use Assert\Assertion;
-use Nnx\Cloner\Options\ClonerOptions;
 use Nnx\Cloner\Options\ModuleOptions;
 use Nnx\ModuleOptions\ModuleOptionsPluginManagerInterface;
 use Zend\ServiceManager\AbstractFactoryInterface;
@@ -98,5 +97,4 @@ class ClonerAbstractFactory implements AbstractFactoryInterface
 
         return $moduleOptions->getCloners();
     }
-
 }

@@ -6,6 +6,7 @@
  */
 
 namespace Nnx\Cloner;
+
 use Assert\Assertion;
 
 /**
