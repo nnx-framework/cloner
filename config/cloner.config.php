@@ -14,7 +14,7 @@ return [
 
         ],
         'abstract_factories' => [
-
+            ClonerAbstractFactory::class => ClonerAbstractFactory::class,
         ]
     ],
 ];
