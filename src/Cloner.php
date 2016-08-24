@@ -6,6 +6,7 @@
  */
 
 namespace Nnx\Cloner;
+use Assert\Assertion;
 
 /**
  * Class Cloner
@@ -41,14 +42,10 @@ class Cloner implements ClonerInterface
      * @param mixed
      *
      * @return mixed
-     * @throws \Nnx\Cloner\Exception\InvalidArgumentException
-     * @throws \Nnx\Cloner\Exception\SetterNotFoundException
      */
     public function cloneObject($object)
     {
-        if (!is_object($object)) {
-            throw new Exception\InvalidArgumentException('Excepted object');
-        }
+        Assertion::isObject($object);
 
         $cloneObject = clone $object;
         $this->afterClone($object, $cloneObject);
@@ -57,11 +54,8 @@ class Cloner implements ClonerInterface
             $cloneRelation = $this->handleRelation($object, $relationName, $relation);
 
             $relationSetter = 'set' . ucfirst($relationName);
-            if (!method_exists($cloneObject, $relationSetter)) {
-                throw new Exception\SetterNotFoundException(
-                    sprintf('Not found setter %s in %s', $relationSetter, get_class($cloneObject))
-                );
-            }
+            Assertion::methodExists($relationSetter, $object);
+
             $cloneObject->$relationSetter($cloneRelation);
         }
 
@@ -74,18 +68,13 @@ class Cloner implements ClonerInterface
      * @param Options\Cloner\RelationOptions $options
      *
      * @return mixed
-     * @throws \Nnx\Cloner\Exception\GetterNotFoundException
      */
     protected function handleRelation($object, $relationName, Options\Cloner\RelationOptions $options)
     {
-        $relationName = 'get' . ucfirst($relationName);
-        if (!method_exists($object, $relationName)) {
-            throw new Exception\GetterNotFoundException(
-                sprintf('Not found getter %s in %s', $relationName, get_class($object))
-            );
-        }
+        $relationGetter = 'get' . ucfirst($relationName);
+        Assertion::methodExists($relationGetter, $object);
 
-        $relationData = $object->$relationName();
+        $relationData = $object->$relationGetter();
         if ($relationData === null) {
             return null;
         }
