@@ -7,6 +7,8 @@
 
 namespace Nnx\Cloner\PhpUnit\TestData\DefaultApp;
 
+use Nnx\Cloner\CloneToManyTrait;
+
 /**
  * Class TestObject
  *
@@ -15,51 +17,70 @@ namespace Nnx\Cloner\PhpUnit\TestData\DefaultApp;
 class TestObject
 {
 
-    /**
-     * @var TestFileObject
-     */
-    protected $file;
+    use CloneToManyTrait;
 
     /**
-     * @var TestFileObject[]
+     * @var TestChildObject
      */
-    protected $files = [];
+    protected $child;
 
     /**
-     * @return TestFileObject
+     * @var TestChildObject[]
      */
-    public function getFile()
+    protected $children = [];
+
+
+    /**
+     * Clone
+     */
+    public function __clone()
     {
-        return $this->file;
+        if (is_object($this->child)) {
+            $this->child = clone $this->child;
+        }
+
+        if (is_array($this->children)) {
+            $this->children = $this->cloneToMany($this->children, $this, 'parent');
+        }
+
+    }
+
+
+    /**
+     * @return TestChildObject
+     */
+    public function getChild()
+    {
+        return $this->child;
     }
 
     /**
-     * @param TestFileObject $file
+     * @param TestChildObject $child
      *
      * @return $this
      */
-    public function setFile($file)
+    public function setChild($child)
     {
-        $this->file = $file;
+        $this->child = $child;
         return $this;
     }
 
     /**
-     * @return TestFileObject[]
+     * @return TestChildObject[]
      */
-    public function getFiles()
+    public function getChildren()
     {
-        return $this->files;
+        return $this->children;
     }
 
     /**
-     * @param TestFileObject[] $files
+     * @param TestChildObject[] $children
      *
      * @return $this
      */
-    public function setFiles($files)
+    public function setChildren($children)
     {
-        $this->files = $files;
+        $this->children = $children;
         return $this;
     }
 

@@ -15,8 +15,8 @@ return [
             'TestCloner'     => [
                 'class'     => Cloner::class,
                 'relations' => [
-                    'file'  => ['clonerName' => 'TestFileCloner',],
-                    'files' => ['clonerName' => 'TestFileCloner',],
+                    'child'    => ['clonerName' => 'TestFileCloner',],
+                    'children' => ['clonerName' => 'TestFileCloner',],
                 ],
             ],
             'TestFileCloner' => [

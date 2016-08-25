@@ -9,7 +9,7 @@ namespace Nnx\Cloner\PhpUnit\Test;
 
 use Nnx\Cloner\ClonerInterface;
 use Nnx\Cloner\ClonerManagerInterface;
-use Nnx\Cloner\PhpUnit\TestData\DefaultApp\TestFileObject;
+use Nnx\Cloner\PhpUnit\TestData\DefaultApp\TestChildObject;
 use Nnx\Cloner\PhpUnit\TestData\DefaultApp\TestObject;
 use Nnx\Cloner\PhpUnit\TestData\TestPaths;
 use PHPUnit_Framework_TestCase;
@@ -55,20 +55,23 @@ class ClonerTest extends PHPUnit_Framework_TestCase
         $cloner = $manager->get('TestCloner');
 
         $object = new TestObject();
-        $object->setFile(new TestFileObject());
-        $object->setFiles([new TestFileObject()]);
+        $object->setChild(new TestChildObject());
+        $child = new TestChildObject();
+        $child->setParent($object);
+        $object->setChildren([$child]);
 
+        $clone = clone $object;
         /** @var TestObject $clone */
-        $clone = $cloner->cloneObject($object);
+        $clone = $cloner->handle($clone);
 
         self::assertCloneObject($object, $clone);
-        self::assertCloneObject($object->getFile(), $clone->getFile());
+        self::assertCloneObject($object->getChild(), $clone->getChild());
 
-        static::assertEquals(count($object->getFiles()), count($clone->getFiles()));
-        static::assertEquals($object->getFiles(), $clone->getFiles());
+        static::assertEquals(count($object->getChildren()), count($clone->getChildren()));
+        static::assertEquals($object->getChildren(), $clone->getChildren());
 
-        $cloneObjects = $clone->getFiles();
-        foreach ($object->getFiles() as $key => $item) {
+        $cloneObjects = $clone->getChildren();
+        foreach ($object->getChildren() as $key => $item) {
             self::assertArrayHasKey($key, $cloneObjects);
             self::assertCloneObject($item, $cloneObjects[$key]);
         }

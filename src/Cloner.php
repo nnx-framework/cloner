@@ -42,25 +42,19 @@ class Cloner implements ClonerInterface
     /**
      * @param mixed
      *
-     * @return mixed
+     * @return mixed Объект для обработки
      */
-    public function cloneObject($object)
+    public function handle($object)
     {
         Assertion::isObject($object);
 
-        $cloneObject = clone $object;
-        $this->afterClone($object, $cloneObject);
+        $this->afterClone($object);
 
-        foreach ($this->options->getRelations() as $relationName => $relation) {
-            $cloneRelation = $this->handleRelation($object, $relationName, $relation);
-
-            $relationSetter = 'set' . ucfirst($relationName);
-            Assertion::methodExists($relationSetter, $object);
-
-            $cloneObject->$relationSetter($cloneRelation);
+        foreach ($this->getOptions()->getRelations() as $relationName => $relation) {
+            $this->handleRelation($object, $relationName, $relation);
         }
 
-        return $cloneObject;
+        return $object;
     }
 
     /**
@@ -104,14 +98,13 @@ class Cloner implements ClonerInterface
     protected function getRelationClonerResult($clonerName, $relationData)
     {
         $cloner = $this->getClonerManager()->get($clonerName);
-        return $cloner->cloneObject($relationData);
+        return $cloner->handle($relationData);
     }
 
     /**
-     * @param mixed $object      Исходный объект
-     * @param mixed $cloneObject Склонированный объект
+     * @param mixed $object      объект для обработки
      */
-    protected function afterClone($object, $cloneObject)
+    protected function afterClone($object)
     {
     }
 
