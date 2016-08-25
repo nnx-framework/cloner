@@ -55,7 +55,7 @@ class ClonerOptions extends AbstractOptions
     }
 
     /**
-     * @param Cloner\RelationOptions[] $relations
+     * @param array $relations
      *
      * @return $this
      */
