@@ -25,16 +25,18 @@ class EntityCloner extends Cloner
     /**
      * EntityCloner constructor.
      *
-     * @param ClonerInterface       $clonerManager
-     * @param Options\ClonerOptions $options
-     * @param ObjectManager         $objectManager
+     * @param ClonerManagerInterface $clonerManager
+     * @param Options\ClonerOptions  $options
+     * @param ObjectManager          $objectManager
      */
     public function __construct(
-        ClonerInterface $clonerManager,
+        ClonerManagerInterface $clonerManager,
         Options\ClonerOptions $options,
         ObjectManager $objectManager
     ) {
         parent::__construct($clonerManager, $options);
+
+        $this->objectManager = $objectManager;
     }
 
     /**

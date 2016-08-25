@@ -12,9 +12,15 @@ use Nnx\Cloner\Cloner;
 return [
     'nnx_cloner_module' => [
         'cloners' => [
-            'TestCloner' => [
+            'TestCloner'     => [
                 'class'     => Cloner::class,
-                'relations' => [],
+                'relations' => [
+                    'file'  => ['clonerName' => 'TestFileCloner',],
+                    'files' => ['clonerName' => 'TestFileCloner',],
+                ],
+            ],
+            'TestFileCloner' => [
+                'class' => Cloner::class,
             ],
         ]
     ],

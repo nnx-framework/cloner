@@ -7,12 +7,14 @@
 
 namespace Nnx\Cloner\Options\Cloner;
 
+use Zend\Stdlib\AbstractOptions;
+
 /**
  * Class RelationOptions
  *
  * @package Nnx\Cloner\Options
  */
-class RelationOptions
+class RelationOptions extends AbstractOptions
 {
     /**
      * @var string название клонера для получения из ClonerManagerInterface
