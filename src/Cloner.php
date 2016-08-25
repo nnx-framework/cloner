@@ -79,7 +79,7 @@ class Cloner implements ClonerInterface
         if ($relationData === null) {
             return null;
         }
-        $cloneData = null;
+
         if (is_array($relationData)
             || $relationData instanceof \Traversable
         ) {
