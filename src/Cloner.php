@@ -79,8 +79,8 @@ class Cloner implements ClonerInterface
         ) {
             $cloneData = [];
             foreach ($relationData as $data) {
-                if ($relationArchiverResult = $this->getRelationClonerResult($options->getClonerName(), $data)) {
-                    $cloneData[] = $relationArchiverResult;
+                if ($relationResult= $this->getRelationClonerResult($options->getClonerName(), $data)) {
+                    $cloneData[] = $relationResult;
                 }
             }
         } else {

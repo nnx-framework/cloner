@@ -19,7 +19,7 @@ trait CloneToManyTrait
      *      $this->array = $this->cloneToMany($this->array, $this, 'parent');
      *
      * @param $array        array|\Traversable объектов для клонирования
-     * @param $parentObject object родительский объект для клонированных объектов
+     * @param $parentObject mixed родительский объект для клонированных объектов
      * @param $parentName   string|null название связи с родительским объектом
      *
      * @return array
