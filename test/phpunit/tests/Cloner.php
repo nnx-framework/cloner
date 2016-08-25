@@ -12,26 +12,28 @@ use Nnx\Cloner\ClonerManagerInterface;
 use Nnx\Cloner\PhpUnit\TestData\DefaultApp\TestFileObject;
 use Nnx\Cloner\PhpUnit\TestData\DefaultApp\TestObject;
 use Nnx\Cloner\PhpUnit\TestData\TestPaths;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use PHPUnit_Framework_TestCase;
+use Zend\Test\Util\ModuleLoader;
 
 /**
  * Class Cloner
  *
  * @package Nnx\Cloner\PhpUnit\Test
  */
-class Cloner extends AbstractHttpControllerTestCase
+class Cloner extends PHPUnit_Framework_TestCase
 {
+
+    /**
+     * @var ModuleLoader
+     */
+    private $moduleLoader;
+
     /**
      * @inheritdoc
      */
     protected function setUp()
     {
-        parent::setUp();
-
-        /** @noinspection PhpIncludeInspection */
-        $this->setApplicationConfig(
-            include TestPaths::getPathToDefaultAppConfig()
-        );
+        $this->moduleLoader = new ModuleLoader(include TestPaths::getPathToDefaultAppConfig());
     }
 
     /**
@@ -40,7 +42,7 @@ class Cloner extends AbstractHttpControllerTestCase
     public function testGetCloner()
     {
         /** @var ClonerManagerInterface $manager */
-        $manager = $this->getApplication()->getServiceManager()->get(ClonerManagerInterface::class);
+        $manager = $this->moduleLoader->getServiceManager()->get(ClonerManagerInterface::class);
         $cloner = $manager->get('TestCloner');
         static::assertInstanceOf(\Nnx\Cloner\Cloner::class, $cloner);
     }
@@ -48,7 +50,7 @@ class Cloner extends AbstractHttpControllerTestCase
     public function testCloneObject()
     {
         /** @var ClonerManagerInterface $manager */
-        $manager = $this->getApplication()->getServiceManager()->get(ClonerManagerInterface::class);
+        $manager = $this->moduleLoader->getServiceManager()->get(ClonerManagerInterface::class);
         /** @var ClonerInterface $cloner */
         $cloner = $manager->get('TestCloner');
 
@@ -68,7 +70,7 @@ class Cloner extends AbstractHttpControllerTestCase
         $cloneObjects = $clone->getFiles();
         foreach ($object->getFiles() as $key => $item) {
             self::assertArrayHasKey($key, $cloneObjects);
-            self::assertCloneObject($item,  $cloneObjects[$key]);
+            self::assertCloneObject($item, $cloneObjects[$key]);
         }
     }
 
