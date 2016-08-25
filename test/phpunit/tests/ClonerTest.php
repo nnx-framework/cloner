@@ -20,7 +20,7 @@ use Zend\Test\Util\ModuleLoader;
  *
  * @package Nnx\Cloner\PhpUnit\Test
  */
-class Cloner extends PHPUnit_Framework_TestCase
+class ClonerTest extends PHPUnit_Framework_TestCase
 {
 
     /**
